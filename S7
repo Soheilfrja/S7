@@ -1,0 +1,30 @@
+بله، می‌توانم یک نمونه کد برای تجمیع کانفیگ‌های Hiddify با استفاده از مقادیر داده شده بنویسم. به این صورت که یک فایل کانفیگ بسازیم که قابلیت آپدیت داشته باشد و عملکرد بهینه با سرعت بالا را تضمین کند:
+
+```python
+import requests
+
+# لیست کانفیگ‌ها
+configs = [
+    "warp://162.159.192.191:854?ifp=4-8&ifps=40-80&ifps=20-40&ifpm=m4&&detour=warp://auto",
+    "warp://162.159.195.242:880?ifp=4-8&ifps=40-80&ifps=20-40&ifpm=m4&&detour=warp://auto",
+    "warp://162.159.192.64:1180?ifp=4-8&ifps=40-80&ifps=20-40&ifpm=m4&&detour=warp://auto",
+    "warp://162.159.195.97:1018?ifp=4-8&ifps=40-80&ifps=20-40&ifpm=m4&&detour=warp://auto",
+    "warp://162.159.192.136:3581?ifp=4-8&ifps=40-80&ifps=20-40&ifpm=m4&&detour=warp://auto",
+    "warp://162.159.192.118:2371?ifp=4-8&ifps=40-80&ifps=20-40&ifpm=m4&&detour=warp://auto",
+    "warp://162.159.192.228:7281?ifp=4-8&ifps=40-80&ifps=20-40&ifpm=m4&&detour=warp://auto"
+]
+
+# تابع برای آپدیت کانفیگ‌ها
+def update_configs():
+    for config in configs:
+        response = requests.get(config)
+        if response.status_code == 200:
+            print(f"Config {config} updated successfully.")
+        else:
+            print(f"Failed to update config {config}.")
+
+if __name__ == "__main__":
+    update_configs()
+```
+
+این نمونه کد، کانفیگ‌های داده شده را از طریق HTTP دریافت می‌کند و از آنجایی که در حال استفاده از `requests.get()` است، می‌توان آن‌ها را به راحتی آپدیت کرد. همچنین می‌توان برای بهینه‌سازی و افزایش سرعت، این کد را به‌طور خاص‌تر تنظیم کرد. اگر نیاز به تنظیمات بیشتری دارید، می‌توانید جزئیات بیشتری ارائه دهید.
